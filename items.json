@@ -1,0 +1,115 @@
+[
+    {
+        "type": "exitTouchbar",
+        "align": "left",
+        "bordered": true,
+        "background": "#6ebac0",
+        "width": 40,
+        "title": "",
+        "image": {
+            "filePath": "~/Library/Application Support/MTMR/mtmr/esc.png"
+        }
+    },
+    {
+        "type": "staticButton",
+        "align": "left",
+        "bordered": false,
+        "title": "anhoder",
+        "actions": [
+          {
+            "trigger": "singleTap",
+            "action": "openUrl",
+            "url": "https://github.com/anhoder"
+          }
+        ],
+        "image": {
+            "filePath": "~/Library/Application Support/MTMR/mtmr/profile.png"
+        }
+    },
+    {
+        "type": "shellScriptTitledButton",
+        "width": 80,
+        "refreshInterval": 2,
+        "source": {
+          "inline": "top -l 1 -n 0 -F | egrep -o ' \\d*\\.\\d+% idle' | tail -1 | awk -F% '{p = 100 - $1; if (p > 30) c = \"\\033[33m\"; if (p > 70) c = \"\\033[30;43m\"; printf \"%s%4.1f%%\\n\", c, p}'"
+        },
+        "actions": [
+          {
+            "trigger": "singleTap",
+            "action": "appleScript",
+            "actionAppleScript": {
+              "inline": "activate application \"Activity Monitor\"\rtell application \"System Events\"\r\ttell process \"Activity Monitor\"\r\t\ttell radio button \"CPU\" of radio group 1 of group 2 of toolbar 1 of window 1 to perform action \"AXPress\"\r\tend tell\rend tell"
+            }
+          }
+        ],
+        "align": "left",
+        "image": {  
+            "filePath": "~/Library/Application Support/MTMR/mtmr/cpu.png"
+        },
+        "bordered": false
+      },
+    {
+      "type": "appleScriptTitledButton",
+      "source": {
+        "inline": "set mem to do shell script \"ps -A -o %mem | awk '{s+=$1}END{print s}'\"\rreturn mem & \"%\""
+      },
+      "action": "appleScript",
+      "actionAppleScript": {
+        "inline": "activate application \"Activity Monitor\"\rtell application \"System Events\"\r\ttell process \"Activity Monitor\"\r\t\ttell radio button \"CPU\" of radio group 1 of group 2 of toolbar 1 of window 1 to perform action \"AXPress\"\r\tend tell\rend tell"
+      },
+      "refreshInterval": 5,
+      "align": "left",
+      "image": {
+        "filePath": "~/Library/Application Support/MTMR/mtmr/ram.png"
+      }
+    },
+    {
+        "type": "battery",
+        "bordered": false,
+        "align": "left",
+        "image": {
+            "filePath": "~/Library/Application Support/MTMR/mtmr/battery.png"
+        }
+    },
+    {
+        "type": "dock",
+        "align": "left",
+        "autoResize": false,
+        "width": 280
+    },
+    {
+        "type": "weather",
+        "refreshInterval": 600,
+        "units": "metric",
+        "icon_type": "images",
+        "api_key": "3bb985efc5a06a85ef0d9b0fe21ec2d5",
+        "align": "right",
+        "bordered": false,
+        "image": {
+            "filePath": "~/Library/Application Support/MTMR/mtmr/clouds.png"
+        }
+    },
+    {
+        "type": "timeButton",
+        "formatTemplate": "aahh:mm",
+        "locale": "zh_CN",
+        "timeZone": "RPC",
+        "align": "right",
+        "bordered": false,
+        "image": {
+            "filePath": "~/Library/Application Support/MTMR/mtmr/clock.png"
+        }
+    },
+    {
+      "type": "displaySleep",
+      "width": 40,
+      "bordered": true,
+      "background": "#3e8ec9",
+      "align": "right",
+      "title": "",
+      "image": {
+        "filePath": "~/Library/Application Support/MTMR/mtmr/sleep.png"
+      }
+    }
+  ]
+  
